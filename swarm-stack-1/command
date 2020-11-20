@@ -1,0 +1,2 @@
+docker-machine scp -r $(pwd) node1:/home/docker/stacks
+docker stack deploy -c exemple-voting-app-stack.yml voteapp

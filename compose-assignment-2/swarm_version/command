@@ -1,0 +1,3 @@
+# on a swarm manager node, run
+echo "oagyetLesCafard123" | docker secret create psql-pw -
+docker stack deploy -c docker-compose.yml my_drupal

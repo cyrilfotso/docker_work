@@ -1,0 +1,7 @@
+# run on a swarm manager node:
+
+docker secret create psql_user psql_user.txt
+
+echo "myDBpassWORD" | docker secret create psql_pass -
+
+docker service create --name psql --secret psql_user --secret psql_pass --env POSTGRES_PASSWORD_FILE=/run/secrets/psql_pass --env POSTGRES_USER_FILE=/run/secrets/psql_user postgres
