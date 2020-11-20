@@ -1,0 +1,17 @@
+# create a local docker registry with named volume
+docker container run --detach --publish 5000:5000 --name=registry --volume $(pwd)/registry-data:/var/lib/registry registry
+
+# create a tagged image for local registry
+docker tag hello-world 127.0.0.1:5000/hello-world
+
+# push to local registry
+docker push 127.0.0.1:5000/hello-world
+
+# pull from local registry
+docker pull 127.0.0.1:5000/hello-world
+
+# run registry on a swarm cluster 
+docker service create --name=registry --detach --publish 5000:5000 registry
+
+# view the registry catalog 
+${host}/v2/_catalog
